@@ -9,6 +9,7 @@ Welcome to the Cheatsheet repository! This repository contains cheatsheets for v
 - [Python](#python)
 - [C++](#c)
 - [Golang](#golang)
+- [React](#React)
 
 ## JavaScript
 
@@ -39,6 +40,10 @@ C++ is a powerful programming language that supports both procedural and object-
 Golang (Go) is a statically typed, compiled language known for its simplicity and performance. The Golang cheatsheet provides a quick overview of key concepts:
 
 - [Golang Cheatsheet](./Golang.md)
+
+## React
+
+- [React Cheatsheet](./React.md)
 
 ## How to Contribute
 
