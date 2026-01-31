@@ -431,35 +431,71 @@ for (int i = 0; i < 5; i++) {
 
 **most imp**
 
-# JCF(Java collection Framework):
 
-1. List Interface
-   Ordered collection (also known as a sequence).
+# JCF (Java Collection Framework)
 
-- ArrayList: Resizable array implementation.
+## 1. List Interface
+
+Ordered collection (also known as a sequence). Allows duplicate elements and maintains insertion order.
+
+### Common List Methods
+
+* `add(E e)`
+* `add(int index, E e)`
+* `get(int index)`
+* `set(int index, E e)`
+* `remove(int index)`
+* `remove(Object o)`
+* `size()`
+* `isEmpty()`
+* `contains(Object o)`
+* `indexOf(Object o)`
+* `clear()`
+
+### ArrayList
+
+Resizable array implementation. Fast random access, slow middle insert/delete.
 
 ```java
 List<String> list = new ArrayList<>();
 list.add("Element");
+list.add("Another");
 list.get(0);
-list.size();
+list.set(1, "Updated");
 list.remove(0);
+list.size();
 ```
 
-- LinkedList: Doubly-linked list implementation.
+### LinkedList
+
+Doubly-linked list implementation. Fast insert/delete, slow random access.
 
 ```java
 List<String> list = new LinkedList<>();
 list.add("Element");
+list.add(1, "Another");
 list.get(0);
-list.size();
-list.remove(0);
+list.remove("Element");
 ```
 
-2. Set Interface
-   Collection that cannot contain duplicate elements.
+---
 
-- HashSet: Hash table implementation.
+## 2. Set Interface
+
+Collection that cannot contain duplicate elements.
+
+### Common Set Methods
+
+* `add(E e)`
+* `remove(Object o)`
+* `contains(Object o)`
+* `size()`
+* `isEmpty()`
+* `clear()`
+
+### HashSet
+
+Hash table implementation. Does not maintain order.
 
 ```java
 Set<String> set = new HashSet<>();
@@ -469,7 +505,9 @@ set.size();
 set.remove("Element");
 ```
 
-- LinkedHashSet: Hash table and linked list implementation (orders elements by insertion order).
+### LinkedHashSet
+
+Hash table and linked list implementation. Maintains insertion order.
 
 ```java
 Set<String> set = new LinkedHashSet<>();
@@ -479,7 +517,9 @@ set.size();
 set.remove("Element");
 ```
 
-- TreeSet: Red-black tree implementation (orders elements based on their values).
+### TreeSet
+
+Red-black tree implementation. Stores elements in sorted order.
 
 ```java
 Set<String> set = new TreeSet<>();
@@ -489,51 +529,91 @@ set.size();
 set.remove("Element");
 ```
 
-3. Queue Interface
-   Collection designed for holding elements prior to processing.
+---
 
-- LinkedList (also implements Queue interface):
+## 3. Queue Interface
+
+Collection designed for holding elements prior to processing (FIFO).
+
+### Common Queue Methods
+
+* `offer(E e)`
+* `poll()`
+* `peek()`
+
+### LinkedList (Queue implementation)
 
 ```java
 Queue<String> queue = new LinkedList<>();
-queue.add("Element");
-queue.offer("Element"); // Similar to add but does not throw exception
-queue.peek(); // Retrieves, but does not remove, the head of this queue
-queue.poll(); // Retrieves and removes the head of this queue
-```
-
-- PriorityQueue: Priority heap implementation (orders elements based on their natural ordering or by a Comparator provided at queue construction time).
-
-```java
-Queue<String> queue = new PriorityQueue<>();
-queue.add("Element");
 queue.offer("Element");
 queue.peek();
 queue.poll();
 ```
 
-4. Deque Interface
-   Double-ended queue, supports element insertion and removal at both ends.
+### PriorityQueue
 
-- ArrayDeque: Resizable array implementation of Deque.
+Priority heap implementation. Orders elements by natural ordering or Comparator.
+
+```java
+Queue<Integer> queue = new PriorityQueue<>();
+queue.offer(10);
+queue.offer(1);
+queue.peek();
+queue.poll();
+```
+
+---
+
+## 4. Deque Interface
+
+Double-ended queue. Supports insertion and removal at both ends.
+
+### Common Deque Methods
+
+* `addFirst(E e)`
+* `addLast(E e)`
+* `offerFirst(E e)`
+* `offerLast(E e)`
+* `peekFirst()`
+* `peekLast()`
+* `pollFirst()`
+* `pollLast()`
+
+### ArrayDeque
+
+Resizable array implementation of Deque (preferred over Stack).
 
 ```java
 Deque<String> deque = new ArrayDeque<>();
 deque.addFirst("Element");
-deque.addLast("Element");
-deque.offerFirst("Element");
-deque.offerLast("Element");
+deque.addLast("Another");
 deque.peekFirst();
-deque.peekLast();
-deque.pollFirst();
 deque.pollLast();
-
 ```
 
-5. Map Interface
-   Object that maps keys to values; cannot contain duplicate keys.
+---
 
-- HashMap: Hash table implementation.
+## 5. Map Interface
+
+Object that maps keys to values. Cannot contain duplicate keys.
+
+### Common Map Methods
+
+* `put(K k, V v)`
+* `get(K k)`
+* `getOrDefault(K k, V defaultValue)`
+* `containsKey(K k)`
+* `containsValue(V v)`
+* `remove(K k)`
+* `size()`
+* `isEmpty()`
+* `keySet()`
+* `values()`
+* `entrySet()`
+
+### HashMap
+
+Hash table implementation. Allows one null key.
 
 ```java
 Map<String, String> map = new HashMap<>();
@@ -544,42 +624,47 @@ map.size();
 map.remove("key");
 ```
 
-- LinkedHashMap: Hash table and linked list implementation (orders elements by insertion order).
+### LinkedHashMap
+
+Hash table and linked list implementation. Maintains insertion or access order.
 
 ```java
 Map<String, String> map = new LinkedHashMap<>();
 map.put("key", "value");
 map.get("key");
-map.containsKey("key");
 map.size();
-map.remove("key");
 ```
 
-- TreeMap: Red-black tree implementation (orders elements based on their natural ordering or by a Comparator provided at map construction time).
+### TreeMap
+
+Red-black tree implementation. Stores keys in sorted order.
 
 ```java
 Map<String, String> map = new TreeMap<>();
 map.put("key", "value");
 map.get("key");
-map.containsKey("key");
 map.size();
-map.remove("key");
 ```
 
-6. Stack Class
-   Last-In-First-Out (LIFO) stack of objects.
+---
+
+## 6. Stack Class (Legacy – Avoid)
+
+Last-In-First-Out (LIFO) stack of objects.
 
 ```java
 Stack<String> stack = new Stack<>();
 stack.push("Element");
-stack.peek(); // Looks at the object at the top of this stack without removing it
-stack.pop(); // Removes the object at the top of this stack and returns that object
-stack.isEmpty(); // Tests if this stack is empty
+stack.peek();
+stack.pop();
+stack.isEmpty();
 ```
 
-## Additional Methods and Tips
+---
 
-- Iteration over Collections:
+## Additional Methods and Utilities
+
+### Iteration
 
 ```java
 // Using Iterator
@@ -588,17 +673,28 @@ while (it.hasNext()) {
     System.out.println(it.next());
 }
 
-// Using enhanced for-loop
+// Enhanced for-loop
 for (String element : list) {
     System.out.println(element);
 }
+
+// forEach (Java 8+)
+list.forEach(System.out::println);
 ```
 
-- sorting Lists:
+### Sorting Lists
 
 ```java
 Collections.sort(list);
-Collections.sort(list, Comparator.reverseOrder());
+list.sort(Comparator.reverseOrder());
+```
+
+### Thread-safe Variants
+
+```java
+Collections.synchronizedList(list);
+ConcurrentHashMap<String, String> concurrentMap = new ConcurrentHashMap<>();
+CopyOnWriteArrayList<String> threadSafeList = new CopyOnWriteArrayList<>();
 ```
 
 # Java Interview questions for Freshers
